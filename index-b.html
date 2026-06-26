@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KIBERone — Школа AI для детей. Создаём, а не зубрим.</title>
+  <meta name="description" content="Не учим программированию. Учим создавать с искусственным интеллектом. Школа для детей 6-14 лет. Бесплатный пробный урок.">
+  <meta property="og:title" content="KIBERone — Учим детей создавать с AI">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0A0E1A;
+      --bg-elevated: #131826;
+      --bg-card: #1A2036;
+      --border: #252D4A;
+      --border-bright: #3A436B;
+      --primary: #6366F1;
+      --primary-glow: rgba(99, 102, 241, 0.4);
+      --accent: #FFD93D;
+      --accent-dim: #B89B26;
+      --cyan: #22D3EE;
+      --green: #34D399;
+      --text: #FFFFFF;
+      --text-secondary: #B4BCD0;
+      --text-muted: #6B7596;
+      --shadow-cta: 0 12px 40px rgba(255, 217, 61, 0.25);
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --container: 1200px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+    .display { font-family: 'Space Grotesk', 'Inter', sans-serif; letter-spacing: -0.02em; }
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* HEADER */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 14, 26, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+    }
+    .logo {
+      display: block;
+      height: 36px;
+      width: auto;
+    }
+    @media (max-width: 559px) { .logo { height: 28px; } }
+    .logo-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin-left: 4px;
+      vertical-align: middle;
+      box-shadow: 0 0 12px var(--accent);
+    }
+    .header-nav {
+      display: none;
+      gap: 36px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+    .header-nav a:hover { color: var(--text); }
+    @media (min-width: 900px) { .header-nav { display: flex; } }
+    .header-actions { display: flex; align-items: center; gap: 16px; }
+    .header-phone {
+      display: none;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .header-phone:hover { color: var(--primary); }
+    @media (min-width: 700px) { .header-phone { display: inline-block; } }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 28px;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s, box-shadow 0.2s, background 0.15s;
+      white-space: nowrap;
+      letter-spacing: -0.01em;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+      box-shadow: var(--shadow-cta);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 48px rgba(255, 217, 61, 0.4);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border-bright);
+    }
+    .btn-ghost:hover {
+      background: var(--bg-elevated);
+      border-color: var(--primary);
+    }
+    .btn-large { padding: 20px 36px; font-size: 17px; }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      padding: 60px 0 100px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1400px;
+      height: 800px;
+      background: radial-gradient(ellipse at center top, rgba(99, 102, 241, 0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center top, black 20%, transparent 70%);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    @media (min-width: 900px) { .hero { padding: 80px 0 140px; } }
+    .hero-pretitle {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      padding: 10px 20px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+    }
+    .hero-pretitle .pulse {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6); }
+      70% { box-shadow: 0 0 0 12px rgba(52, 211, 153, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+    }
+    .hero h1 {
+      font-size: 44px;
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 28px;
+    }
+    @media (min-width: 600px) { .hero h1 { font-size: 60px; } }
+    @media (min-width: 1000px) { .hero h1 { font-size: 80px; } }
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, var(--cyan), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin: 0 auto 40px;
+    }
+    @media (min-width: 600px) { .hero-subtitle { font-size: 21px; } }
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .hero-phone {
+      text-align: center;
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+    .hero-phone a {
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .hero-phone a:hover { color: var(--text); }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .hero-meta-item::before {
+      content: '✓';
+      color: var(--green);
+      margin-right: 6px;
+      font-weight: 700;
+    }
+
+    /* STORY BLOCK */
+    .story-section {
+      padding: 100px 0;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-elevated) 50%, var(--bg) 100%);
+      position: relative;
+    }
+    .story-card {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    @media (min-width: 700px) { .story-card { padding: 56px; } }
+    .story-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--cyan));
+    }
+    .story-quote-mark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 80px;
+      line-height: 0.5;
+      color: var(--primary);
+      margin-bottom: 16px;
+      opacity: 0.6;
+    }
+    .story-text {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 32px;
+    }
+    @media (min-width: 700px) { .story-text { font-size: 22px; } }
+    .story-text em {
+      color: var(--accent);
+      font-style: normal;
+      font-weight: 600;
+    }
+    .story-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .story-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--cyan));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--bg);
+      flex-shrink: 0;
+    }
+    .story-author-name {
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .story-author-meta {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* SECTIONS */
+    section { padding: 100px 0; }
+    @media (min-width: 900px) { section { padding: 140px 0; } }
+    .section-head {
+      max-width: 760px;
+      margin: 0 auto 64px;
+      text-align: center;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    @media (min-width: 600px) { h2 { font-size: 44px; } }
+    @media (min-width: 1000px) { h2 { font-size: 56px; } }
+    .lede {
+      font-size: 18px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* SHOWCASE */
+    .showcase-grid {
+      display: grid;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    @media (min-width: 700px) { .showcase-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1000px) { .showcase-grid { grid-template-columns: repeat(3, 1fr); } }
+    .showcase-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+      position: relative;
+    }
+    .showcase-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--primary);
+    }
+    .showcase-visual {
+      aspect-ratio: 16 / 10;
+      background: var(--bg-elevated);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+    }
+    .showcase-card:nth-child(1) .showcase-visual {
+      background: linear-gradient(135deg, #1E3A8A, #6366F1);
+    }
+    .showcase-card:nth-child(2) .showcase-visual {
+      background: linear-gradient(135deg, #064E3B, #10B981);
+    }
+    .showcase-card:nth-child(3) .showcase-visual {
+      background: linear-gradient(135deg, #7C2D12, #FB923C);
+    }
+    .showcase-card:nth-child(4) .showcase-visual {
+      background: linear-gradient(135deg, #4C1D95, #A78BFA);
+    }
+    .showcase-card:nth-child(5) .showcase-visual {
+      background: linear-gradient(135deg, #831843, #EC4899);
+    }
+    .showcase-card:nth-child(6) .showcase-visual {
+      background: linear-gradient(135deg, #134E4A, #22D3EE);
+    }
+    .showcase-meta {
+      padding: 24px;
+    }
+    .showcase-tags {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .showcase-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 100px;
+      background: var(--bg-elevated);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+    .showcase-tag.ai {
+      background: rgba(99, 102, 241, 0.15);
+      color: #A5A8FF;
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+    .showcase-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .showcase-author {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* INLINE QUOTE */
+    .inline-quote {
+      max-width: 760px;
+      margin: 80px auto 0;
+      padding: 32px;
+      border-left: 3px solid var(--accent);
+      background: var(--bg-elevated);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+    .inline-quote p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .inline-quote cite {
+      display: block;
+      font-size: 14px;
+      color: var(--text-muted);
+      font-style: normal;
+    }
+
+    /* WHAT WE DO */
+    .what-section {
+      background: var(--bg-elevated);
+    }
+    .what-grid {
+      display: grid;
+      gap: 32px;
+      margin-top: 48px;
+    }
+    @media (min-width: 800px) { .what-grid { grid-template-columns: repeat(3, 1fr); } }
+    .what-item {
+      position: relative;
+      padding-top: 32px;
+    }
+    .what-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 88px;
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(180deg, var(--primary), transparent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+    .what-item h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .what-item p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* TRIAL FLOW */
+    .trial-flow {
+      display: grid;
+      gap: 16px;
+      max-width: 720px;
+      margin: 48px auto 0;
+    }
+    .trial-step {
+      display: flex;
+      gap: 24px;
+      padding: 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      transition: border-color 0.2s;
+    }
+    .trial-step:hover { border-color: var(--primary); }
+    .trial-step-num {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--cyan));
+      color: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+    }
+    .trial-step-body h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .trial-step-body p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .trial-cta {
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    /* AUTHORITY */
+    .authority-section {
+      background: var(--bg-elevated);
+      position: relative;
+      overflow: hidden;
+    }
+    .authority-grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 48px;
+    }
+    @media (min-width: 700px) { .authority-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1000px) { .authority-grid { grid-template-columns: repeat(4, 1fr); } }
+    .authority-card {
+      padding: 28px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+    .authority-card .stat {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 44px;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .authority-card .label {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .authority-bottom {
+      max-width: 760px;
+      margin: 64px auto 0;
+      text-align: center;
+      padding: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+    .authority-bottom h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .authority-bottom p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* INVESTMENT (вместо открытых цен) */
+    .investment-section {
+      text-align: center;
+    }
+    .investment-card {
+      max-width: 720px;
+      margin: 48px auto 0;
+      background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
+      border: 1px solid var(--border-bright);
+      border-radius: var(--radius-lg);
+      padding: 48px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .investment-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .investment-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+    .investment-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    @media (min-width: 600px) { .investment-card h3 { font-size: 36px; } }
+    .investment-card p {
+      font-size: 17px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto 32px;
+    }
+    .investment-list {
+      display: grid;
+      gap: 12px;
+      max-width: 480px;
+      margin: 0 auto 32px;
+      text-align: left;
+    }
+    .investment-list li {
+      list-style: none;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .investment-list li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    /* MINI FAQ */
+    .faq-section {
+      background: var(--bg-elevated);
+    }
+    .faq-list {
+      max-width: 800px;
+      margin: 48px auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .faq-item.open {
+      border-color: var(--primary);
+    }
+    .faq-question {
+      width: 100%;
+      padding: 22px 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      text-align: left;
+    }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--bg-elevated);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: var(--primary);
+      color: var(--text);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-answer-inner {
+      padding: 0 28px 24px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+    .faq-item.open .faq-answer { max-height: 600px; }
+
+    /* FINAL CTA */
+    .final-section {
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-elevated) 100%);
+    }
+    .final-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(34, 211, 238, 0.12) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .final-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .final-section h2 {
+      margin-bottom: 16px;
+    }
+    .final-section p.lede {
+      margin-bottom: 40px;
+    }
+    .form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-bright);
+      border-radius: var(--radius-lg);
+      padding: 40px 28px;
+    }
+    @media (min-width: 600px) { .form-card { padding: 48px 40px; } }
+    .form-group {
+      margin-bottom: 16px;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 16px 18px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 16px;
+      color: var(--text);
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: var(--bg-elevated);
+    }
+    .form-group input::placeholder {
+      color: var(--text-muted);
+    }
+    .form-submit {
+      width: 100%;
+      margin-top: 8px;
+    }
+    .form-microtext {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 16px;
+      line-height: 1.5;
+    }
+    .form-success { display: none; padding: 20px 0; }
+    .form-success.shown { display: block; }
+    .form-success-icon { font-size: 56px; margin-bottom: 16px; }
+    .form-success h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .form-success p { color: var(--text-secondary); }
+
+    /* FOOTER */
+    .footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 40px 0 32px;
+    }
+    .footer-contact {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 8px 16px;
+      margin-bottom: 28px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .footer-contact a {
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+    }
+    .footer-contact a:hover { color: var(--text); }
+    .footer-trust {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px 32px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .footer-trust span { color: var(--green); margin-right: 6px; }
+    .footer-bottom {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* MOBILE STICKY CTA */
+    .mobile-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 12px 16px;
+      background: rgba(10, 14, 26, 0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border);
+      z-index: 50;
+    }
+    .mobile-cta .btn { width: 100%; }
+    @media (max-width: 800px) {
+      .mobile-cta { display: block; }
+      body { padding-bottom: 80px; }
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s, transform 0.7s;
+    }
+    .reveal.shown { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="#" aria-label="KIBERone"><img class="logo" src="logo-kiberone-white.png" alt="KIBERone"></a>
+      <nav class="header-nav">
+        <a href="#what">Что мы делаем</a>
+        <a href="#trial">Пробный урок</a>
+        <a href="#authority">Команда</a>
+        <a href="#faq">Вопросы</a>
+      </nav>
+      <div class="header-actions">
+        <a href="tel:+79274334966" class="header-phone">+7 (927) 433-49-66</a>
+        <a href="#form" class="btn btn-primary" style="padding: 12px 22px; font-size: 14px;">Бесплатный урок</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-pretitle">
+        <span class="pulse"></span>
+        Школа AI и цифровых навыков для детей 6-14 лет
+      </div>
+      <h1 class="display">Не учим программированию.<br><span class="gradient">Учим создавать с искусственным интеллектом.</span></h1>
+      <p class="hero-subtitle">Дети 6-14 лет приходят к нам с интересом к нейросетям — и уходят с реальными работающими AI-проектами в портфолио. Игры, сайты, голосовые ассистенты, MVP-продукты. Сделанные своими руками.</p>
+      <div class="hero-cta-row">
+        <a href="#form" class="btn btn-primary btn-large">Получить бесплатный урок</a>
+        <a href="#trial" class="btn btn-ghost btn-large">Как это работает</a>
+      </div>
+      <div class="hero-phone">
+        или позвоните: <a href="tel:+79274334966">+7 (927) 433-49-66</a>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-meta-item">1.5 часа без оплаты</div>
+        <div class="hero-meta-item">Без обязательств после</div>
+        <div class="hero-meta-item">Звонок за 15 минут</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="story-section reveal">
+  <div class="container">
+    <div class="story-card">
+      <div class="story-quote-mark">"</div>
+      <p class="story-text">Артёму было 10. Полгода назад я не знала, что с ним делать — три часа в Roblox каждый день, ноль интереса к чему-либо. Записала на пробный урок. Он сделал свою мини-игру и пришёл домой с одним требованием: <em>«хочу ещё»</em>. Сейчас он сам создаёт игры в Roblox, в которые играют его одноклассники. Я перестала воевать с экраном — теперь мы вместе смотрим, что он создал.</p>
+      <div class="story-author">
+        <div class="story-avatar">А</div>
+        <div>
+          <div class="story-author-name">Анна, мама Артёма</div>
+          <div class="story-author-meta">Краснодар · Артём учится 6 месяцев</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Реальные работы наших учеников</span>
+      <h2 class="display">Что дети создают за первые месяцы</h2>
+      <p class="lede">Это не учебные упражнения. Это работающие проекты, которыми ученики пользуются сами и показывают друзьям.</p>
+    </div>
+    <div class="showcase-grid">
+      <div class="showcase-card">
+        <div class="showcase-visual">🎮</div>
+        <div class="showcase-meta">
+          <div class="showcase-tags">
+            <span class="showcase-tag ai">AI-помощник</span>
+            <span class="showcase-tag">Roblox</span>
+          </div>
+          <h3>Космическая аркада с умными врагами</h3>
+          <div class="showcase-author">Никита, 12 лет · Vibe Coding & AI</div>
+        </div>
+      </div>
+      <div class="showcase-card">
+        <div class="showcase-visual">🌐</div>
+        <div class="showcase-meta">
+          <div class="showcase-tags">
+            <span class="showcase-tag ai">Нейросеть</span>
+            <span class="showcase-tag">Python</span>
+          </div>
+          <h3>Сайт-помощник по русскому языку</h3>
+          <div class="showcase-author">София, 13 лет · AI Product Lab</div>
+        </div>
+      </div>
+      <div class="showcase-card">
+        <div class="showcase-visual">🤖</div>
+        <div class="showcase-meta">
+          <div class="showcase-tags">
+            <span class="showcase-tag ai">GPT</span>
+            <span class="showcase-tag">Telegram</span>
+          </div>
+          <h3>Бот для подготовки к контрольным</h3>
+          <div class="showcase-author">Артём, 11 лет · Промпт-инжиниринг</div>
+        </div>
+      </div>
+      <div class="showcase-card">
+        <div class="showcase-visual">🎨</div>
+        <div class="showcase-meta">
+          <div class="showcase-tags">
+            <span class="showcase-tag ai">Midjourney</span>
+            <span class="showcase-tag">Дизайн</span>
+          </div>
+          <h3>Серия комиксов с AI-иллюстрациями</h3>
+          <div class="showcase-author">Маша, 9 лет · Mini-AI Playground</div>
+        </div>
+      </div>
+      <div class="showcase-card">
+        <div class="showcase-visual">🛒</div>
+        <div class="showcase-meta">
+          <div class="showcase-tags">
+            <span class="showcase-tag ai">AI-копирайтинг</span>
+            <span class="showcase-tag">VK</span>
+          </div>
+          <h3>Магазин стикеров в VK</h3>
+          <div class="showcase-author">Лена, 13 лет · Нейросети + VK</div>
+        </div>
+      </div>
+      <div class="showcase-card">
+        <div class="showcase-visual">🎙️</div>
+        <div class="showcase-meta">
+          <div class="showcase-tags">
+            <span class="showcase-tag ai">Голос. ассистент</span>
+            <span class="showcase-tag">Алиса</span>
+          </div>
+          <h3>Навык для подготовки к экзаменам</h3>
+          <div class="showcase-author">Кирилл, 14 лет · Голосовой помощник</div>
+        </div>
+      </div>
+    </div>
+    <div class="inline-quote">
+      <p>«Сын у нас и так увлекался ChatGPT, но просто сидел в нём. Сейчас он использует AI как инструмент: пишет рефераты, делает презентации, недавно сам собрал бота в Telegram. Учительница в школе спросила, кто ему помогает.»</p>
+      <cite>— Дмитрий, папа Никиты, 12 лет</cite>
+    </div>
+  </div>
+</section>
+
+<section class="what-section reveal" id="what">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Подход</span>
+      <h2 class="display">Что мы делаем иначе</h2>
+      <p class="lede">Большинство школ программирования всё ещё учат «Scratch → Python → C++» по схеме 2018 года. Мы перестроили программу под реальный рынок 2026.</p>
+    </div>
+    <div class="what-grid">
+      <div class="what-item">
+        <div class="what-num">01</div>
+        <h3 class="display">Учим управлять AI</h3>
+        <p>Не «писать код» — а ставить задачи нейросетям, проверять результат, собирать продукты. Навык, который уже сегодня требуют в IT, маркетинге и дизайне.</p>
+      </div>
+      <div class="what-item">
+        <div class="what-num">02</div>
+        <h3 class="display">Каждое занятие — продукт</h3>
+        <p>Ребёнок не «изучает теорию». Он создаёт что-то конкретное и забирает домой. Через год — портфолио из 30+ работающих проектов.</p>
+      </div>
+      <div class="what-item">
+        <div class="what-num">03</div>
+        <h3 class="display">11 модулей про AI</h3>
+        <p>Промпт-инжиниринг, AI Product Lab, Vibe Coding, нейросети для школьников, Python+AI. Программа обновляется каждые 6 месяцев под новые инструменты.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal" id="trial">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Бесплатный пробный урок</span>
+      <h2 class="display">Что произойдёт за 1.5 часа</h2>
+      <p class="lede">Ребёнок придёт без опыта — уйдёт с собственной игрой с AI и пониманием, что ему интересно дальше.</p>
+    </div>
+    <div class="trial-flow">
+      <div class="trial-step">
+        <div class="trial-step-num">1</div>
+        <div class="trial-step-body">
+          <h3>Знакомство и диагностика</h3>
+          <p>Преподаватель узнаёт интересы ребёнка, его уровень и подбирает персональный проект. Параллельно — короткий тест на сильные стороны.</p>
+        </div>
+      </div>
+      <div class="trial-step">
+        <div class="trial-step-num">2</div>
+        <div class="trial-step-body">
+          <h3>Создание проекта с AI</h3>
+          <p>Главные 50 минут. Ребёнок под руководством преподавателя пошагово создаёт свою AI-игру. Делает всё сам — преподаватель только направляет.</p>
+        </div>
+      </div>
+      <div class="trial-step">
+        <div class="trial-step-num">3</div>
+        <div class="trial-step-body">
+          <h3>Презентация и рекомендация</h3>
+          <p>Ребёнок показывает работу родителям. Преподаватель даёт письменную рекомендацию: какой модуль подойдёт, почему именно он, и что от него ожидать.</p>
+        </div>
+      </div>
+    </div>
+    <div class="trial-cta">
+      <a href="#form" class="btn btn-primary btn-large">Получить бесплатный урок</a>
+    </div>
+  </div>
+</section>
+
+<section class="authority-section reveal" id="authority">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Доверие</span>
+      <h2 class="display">Почему 12 000 семей выбрали сеть KIBERone</h2>
+    </div>
+    <div class="authority-grid">
+      <div class="authority-card">
+        <div class="stat">8 лет</div>
+        <div class="label">в детском IT-образовании, программа обновляется ежегодно</div>
+      </div>
+      <div class="authority-card">
+        <div class="stat">7 городов</div>
+        <div class="label">России — Челны, Нижнекамск, Казань, Елабуга, Краснодар, Сургут, Пермь</div>
+      </div>
+      <div class="authority-card">
+        <div class="stat">90%</div>
+        <div class="label">учеников продолжают обучение второй год подряд</div>
+      </div>
+      <div class="authority-card">
+        <div class="stat">11 модулей</div>
+        <div class="label">построены вокруг искусственного интеллекта и нейросетей</div>
+      </div>
+    </div>
+    <div class="authority-bottom">
+      <h3 class="display">Преподаватели — действующие IT-специалисты</h3>
+      <p>Не «студенты-педагоги по совместительству». Наши преподаватели работают в IT — разработчиками, AI-инженерами, продакт-менеджерами — и параллельно ведут занятия. Поэтому дети учатся реальным навыкам, а не учебникам.</p>
+    </div>
+  </div>
+</section>
+
+<section class="investment-section reveal">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Стоимость</span>
+      <h2 class="display">Цену обсудим на пробном</h2>
+      <p class="lede">Мы не показываем прайс на сайте — потому что стоимость зависит от модуля, формата и города. После пробного урока менеджер подберёт оптимальный вариант под ваш запрос и бюджет.</p>
+    </div>
+    <div class="investment-card">
+      <div class="investment-card-inner">
+        <h3 class="display">Что будет точно</h3>
+        <ul class="investment-list">
+          <li>Прозрачный договор и официальный чек</li>
+          <li>Возможность помесячной оплаты — без долгих обязательств</li>
+          <li>Рассрочка 0% на 6 и 12 месяцев</li>
+          <li>Отказ в любой момент с возвратом за неиспользованные занятия</li>
+          <li>Гарантия результата на первый месяц обучения</li>
+        </ul>
+        <a href="#form" class="btn btn-primary btn-large">Узнать стоимость на пробном</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section reveal" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="display">Что обычно спрашивают родители</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>А зачем учить программированию, если AI пишет код сам?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Согласны — простой код AI пишет сам. Поэтому мы и не учим только коду. Мы учим управлять AI: ставить задачу, проверять результат, собирать продукты. Это навык, которого никто не имел 2 года назад, и без которого через 3 года не возьмут ни в IT, ни в маркетинг, ни в дизайн.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>С какого возраста ребёнку точно подойдёт?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">С 6 лет — у нас есть Mini-AI Playground без кода. С 9 лет — серьёзные модули: промпт-инжиниринг, Python+AI. Возраст 6-8 — самое время начинать: у детей нет страха перед AI, они принимают его как инструмент, как мы принимали калькулятор.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>У ребёнка большая нагрузка в школе. Не перегрузим?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Занятие раз в неделю, 1.5 часа. Дети сюда идут отдыхать, потому что они тут создают, а не зубрят. 80% наших учеников жалуются родителям, когда занятие переносится — для них это любимое время недели.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Что если после пробного решим, что не подходит?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Это нормально и часто бывает. Никто к вам не будет приставать. Менеджер просто скажет «спасибо» и закроет вопрос. Базу контактов мы храним 6 месяцев на случай, если ребёнок дозреет — потом удаляем.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Можно онлайн или только оффлайн?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Принципиально оффлайн. Детям 6-14 лет нужны живая группа и преподаватель рядом — без этого онлайн-формат бросают за 2 месяца. Если в вашем городе филиала нет — порекомендуем коллег по школам, которые работают онлайн качественно.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-section reveal" id="form">
+  <div class="container">
+    <div class="final-inner">
+      <span class="eyebrow">Один шаг</span>
+      <h2 class="display">Записать ребёнка на бесплатный урок</h2>
+      <p class="lede">Оставьте имя и телефон. Менеджер перезвонит за 15 минут, выберет удобное время и расскажет про филиалы в вашем городе.</p>
+      <div class="form-card">
+        <form id="trial-form">
+          <div class="form-group">
+            <label for="name">Имя ребёнка</label>
+            <input type="text" id="name" required placeholder="Артём">
+          </div>
+          <div class="form-group">
+            <label for="phone">Ваш телефон</label>
+            <input type="tel" id="phone" required placeholder="+7 (___) ___-__-__">
+          </div>
+          <button type="submit" class="btn btn-primary btn-large form-submit">Получить бесплатный урок →</button>
+          <p class="form-microtext">Возраст и удобный филиал уточним по телефону. Без рассылок и спама — мы тоже их не любим.</p>
+          <p class="form-microtext">Не хотите ждать звонка? Позвоните: <a href="tel:+79274334966" style="color: var(--accent); font-weight: 700; white-space: nowrap;">+7 (927) 433-49-66</a></p>
+        </form>
+        <div class="form-success" id="form-success">
+          <div class="form-success-icon">✓</div>
+          <h3 class="display">Заявка принята</h3>
+          <p>Менеджер свяжется в течение 15 минут.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-contact">
+      <a href="tel:+79274334966">+7 (927) 433-49-66</a>
+      <span>ежедневно 9:00–21:00</span>
+    </div>
+    <div class="footer-trust">
+      <div><span>✓</span> Лицензия на образовательную деятельность</div>
+      <div><span>✓</span> Официальный договор и чек</div>
+      <div><span>✓</span> Камеры в кабинетах</div>
+      <div><span>✓</span> Преподаватели — IT-специалисты</div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 KIBERone. Школа AI и цифровых навыков для детей.
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-cta">
+  <a href="#form" class="btn btn-primary">Получить бесплатный урок →</a>
+</div>
+
+<script>
+  // FAQ
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('shown');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Phone formatting
+  const phoneInput = document.getElementById('phone');
+  phoneInput.addEventListener('input', (e) => {
+    let v = e.target.value.replace(/\D/g, '');
+    if (v.startsWith('8')) v = '7' + v.slice(1);
+    if (!v.startsWith('7')) v = '7' + v;
+    let f = '+7';
+    if (v.length > 1) f += ' (' + v.slice(1, 4);
+    if (v.length >= 5) f += ') ' + v.slice(4, 7);
+    if (v.length >= 8) f += '-' + v.slice(7, 9);
+    if (v.length >= 10) f += '-' + v.slice(9, 11);
+    e.target.value = f;
+  });
+
+  // Form
+  const form = document.getElementById('trial-form');
+  const success = document.getElementById('form-success');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // TODO: подключить отправку в CRM (s20.online)
+    // fetch('/api/lead', { method: 'POST', body: JSON.stringify({ name, phone, variant: 'B' }) })
+    form.style.display = 'none';
+    success.classList.add('shown');
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+</script>
+
+</body>
+</html>

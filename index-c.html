@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KIBERone — Подберём AI-обучение под вашего ребёнка за 2 минуты</title>
+  <meta name="description" content="Пройдите короткий тест и узнайте, какое направление в KIBERone подойдёт именно вашему ребёнку. Бесплатный пробный урок.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAFBFD;
+      --bg-soft: #F1F4FA;
+      --card: #FFFFFF;
+      --border: #E5E9F2;
+      --border-strong: #CDD3E1;
+      --primary: #6366F1;
+      --primary-light: #EEF0FF;
+      --pink: #EC4899;
+      --accent: #F59E0B;
+      --accent-dark: #D97706;
+      --success: #10B981;
+      --text: #0F172A;
+      --text-secondary: #475569;
+      --text-muted: #94A3B8;
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 12px 32px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 24px 64px rgba(15, 23, 42, 0.12);
+      --shadow-cta: 0 8px 24px rgba(245, 158, 11, 0.35);
+      --gradient: linear-gradient(135deg, var(--primary) 0%, var(--pink) 100%);
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    a { color: inherit; text-decoration: none; }
+
+    /* HEADER */
+    .header {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: block;
+      height: 36px;
+      width: auto;
+    }
+    @media (max-width: 559px) { .logo { height: 28px; } }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .header-phone {
+      display: none;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+    .header-phone:hover { color: var(--primary); }
+    @media (min-width: 700px) { .header-phone { display: inline-block; } }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 28px;
+      border-radius: 100px;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s, box-shadow 0.2s, background 0.15s;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: var(--shadow-cta);
+    }
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(245, 158, 11, 0.5);
+    }
+    .btn-primary:disabled {
+      background: var(--border-strong);
+      color: var(--text-muted);
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+    .btn-ghost {
+      background: var(--card);
+      color: var(--text);
+      border: 1.5px solid var(--border-strong);
+    }
+    .btn-ghost:hover { border-color: var(--primary); }
+    .btn-large { padding: 20px 36px; font-size: 17px; }
+
+    /* HERO */
+    .hero {
+      padding: 60px 0 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      height: 600px;
+      background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .hero-pretitle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 8px 16px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .hero-pretitle::before {
+      content: '✨';
+      font-size: 14px;
+    }
+    .hero h1 {
+      font-size: 38px;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    @media (min-width: 600px) { .hero h1 { font-size: 52px; } }
+    @media (min-width: 900px) { .hero h1 { font-size: 64px; } }
+    .hero h1 .gradient {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle {
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+    @media (min-width: 600px) { .hero-subtitle { font-size: 19px; } }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 24px;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 24px;
+    }
+    .hero-meta-item::before {
+      content: '✓';
+      color: var(--success);
+      margin-right: 6px;
+      font-weight: 800;
+    }
+
+    /* QUIZ */
+    .quiz-section {
+      padding: 40px 0 80px;
+    }
+    .quiz {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .quiz-progress {
+      padding: 20px 32px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--bg-soft);
+    }
+    .quiz-progress-text {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+      letter-spacing: 0.02em;
+    }
+    .quiz-progress-bar {
+      flex: 1;
+      height: 8px;
+      background: var(--border);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .quiz-progress-fill {
+      height: 100%;
+      background: var(--gradient);
+      border-radius: 100px;
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 20%;
+    }
+    .quiz-body {
+      padding: 32px 24px;
+      min-height: 360px;
+    }
+    @media (min-width: 600px) { .quiz-body { padding: 48px 40px; } }
+    .quiz-step {
+      display: none;
+      animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .quiz-step.active { display: block; }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .quiz-question {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    @media (min-width: 600px) { .quiz-question { font-size: 28px; } }
+    .quiz-hint {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .quiz-options {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    @media (min-width: 600px) {
+      .quiz-options.cols-2 { grid-template-columns: 1fr 1fr; }
+    }
+    .quiz-option {
+      width: 100%;
+      padding: 18px 20px;
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .quiz-option:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+    .quiz-option.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+    }
+    .quiz-option-icon {
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+    .quiz-option-text {
+      flex: 1;
+    }
+    .quiz-option-sub {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .quiz-controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .quiz-back {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 16px;
+      transition: color 0.15s;
+    }
+    .quiz-back:hover { color: var(--text); }
+    .quiz-back.hidden { visibility: hidden; }
+    .quiz-next {
+      flex: 1;
+    }
+
+    /* CONTACT STEP */
+    .quiz-form {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .quiz-form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .quiz-form-group input {
+      width: 100%;
+      padding: 16px 18px;
+      background: var(--bg-soft);
+      border: 2px solid transparent;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 16px;
+      color: var(--text);
+      transition: all 0.15s;
+    }
+    .quiz-form-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: var(--card);
+    }
+
+    /* RESULT */
+    .quiz-result {
+      text-align: center;
+    }
+    .quiz-result-emoji {
+      font-size: 64px;
+      margin-bottom: 16px;
+      animation: bounce 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes bounce {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .quiz-result-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .quiz-result h2 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    @media (min-width: 600px) { .quiz-result h2 { font-size: 32px; } }
+    .quiz-result-module {
+      background: var(--gradient);
+      color: white;
+      padding: 24px;
+      border-radius: var(--radius-md);
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    .quiz-result-module-name {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .quiz-result-module-age {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+    }
+    .quiz-result-module-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      opacity: 0.95;
+    }
+    .quiz-result-summary {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      padding: 0 8px;
+      line-height: 1.6;
+    }
+    .quiz-result-cta {
+      width: 100%;
+      margin-bottom: 12px;
+    }
+    .quiz-result-micro {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* SECTIONS BELOW */
+    section.below { padding: 80px 0; }
+    .section-head {
+      max-width: 720px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+    h2 {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    @media (min-width: 600px) { h2 { font-size: 42px; } }
+    .lede {
+      font-size: 17px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* WHY QUIZ */
+    .why-section {
+      background: var(--bg-soft);
+    }
+    .why-grid {
+      display: grid;
+      gap: 20px;
+    }
+    @media (min-width: 700px) { .why-grid { grid-template-columns: repeat(3, 1fr); } }
+    .why-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .why-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .why-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-sm);
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+    .why-card h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .why-card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials-grid {
+      display: grid;
+      gap: 24px;
+    }
+    @media (min-width: 800px) { .testimonials-grid { grid-template-columns: repeat(2, 1fr); } }
+    .t-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .t-text {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .t-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .t-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--gradient);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .t-name {
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .t-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* TRUST */
+    .trust-section {
+      background: var(--text);
+      color: white;
+      padding: 60px 0;
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    @media (min-width: 700px) { .trust-grid { grid-template-columns: repeat(4, 1fr); } }
+    .trust-stat {
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+    .trust-label {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.4;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--bg);
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .footer-contact {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 6px 14px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .footer-contact a {
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--primary);
+      letter-spacing: 0.01em;
+    }
+    .footer-contact a:hover { color: var(--primary-dark, var(--primary)); }
+    .footer-trust {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 28px;
+      margin-bottom: 16px;
+    }
+    .footer-trust span { color: var(--success); margin-right: 4px; }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .reveal.shown { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="#" aria-label="KIBERone"><img class="logo" src="logo-kiberone.png" alt="KIBERone"></a>
+      <div class="header-right">
+        <a href="tel:+79274334966" class="header-phone">+7 (927) 433-49-66</a>
+        <a href="#quiz" class="btn btn-ghost" style="padding: 10px 20px; font-size: 14px;">Пройти тест</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-pretitle">2 минуты · 5 вопросов · персональная рекомендация</div>
+      <h1>Подберём <span class="gradient">идеальное AI-обучение</span> для вашего ребёнка</h1>
+      <p class="hero-subtitle">Ответьте на 5 коротких вопросов — расскажем, какое из 50+ направлений в KIBERone подойдёт именно вашему ребёнку, и запишем на бесплатный пробный урок.</p>
+      <a href="#quiz" class="btn btn-primary btn-large">Начать тест →</a>
+      <div class="hero-meta">
+        <div class="hero-meta-item">Бесплатно</div>
+        <div class="hero-meta-item">Без регистрации</div>
+        <div class="hero-meta-item">Пробный урок в подарок</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quiz-section" id="quiz">
+  <div class="container">
+    <div class="quiz">
+      <div class="quiz-progress">
+        <span class="quiz-progress-text" id="progress-text">Вопрос 1 из 5</span>
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+
+      <div class="quiz-body">
+        <!-- STEP 1 -->
+        <div class="quiz-step active" data-step="1">
+          <h2 class="quiz-question">Сколько лет вашему ребёнку?</h2>
+          <p class="quiz-hint">От возраста зависит подход и сложность программы</p>
+          <div class="quiz-options" data-name="age">
+            <button class="quiz-option" data-value="6-8">
+              <span class="quiz-option-icon">🌟</span>
+              <span class="quiz-option-text">6-8 лет<span class="quiz-option-sub">Младшая школа · знакомство с цифрой</span></span>
+            </button>
+            <button class="quiz-option" data-value="9-11">
+              <span class="quiz-option-icon">🚀</span>
+              <span class="quiz-option-text">9-11 лет<span class="quiz-option-sub">Средняя школа · первые проекты</span></span>
+            </button>
+            <button class="quiz-option" data-value="12-14">
+              <span class="quiz-option-icon">🤖</span>
+              <span class="quiz-option-text">12-14 лет<span class="quiz-option-sub">Подростки · профессиональный уровень</span></span>
+            </button>
+          </div>
+          <div class="quiz-controls">
+            <button class="quiz-back hidden">← Назад</button>
+            <button class="btn btn-primary quiz-next" disabled>Дальше</button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="quiz-step" data-step="2">
+          <h2 class="quiz-question">Что ребёнок любит больше всего?</h2>
+          <p class="quiz-hint">Выберите главный интерес — программу подберём под него</p>
+          <div class="quiz-options cols-2" data-name="interest">
+            <button class="quiz-option" data-value="games">
+              <span class="quiz-option-icon">🎮</span>
+              <span class="quiz-option-text">Играть в игры<span class="quiz-option-sub">Roblox, Minecraft, мобильные</span></span>
+            </button>
+            <button class="quiz-option" data-value="creative">
+              <span class="quiz-option-icon">🎨</span>
+              <span class="quiz-option-text">Рисовать, творить<span class="quiz-option-sub">Картинки, видео, истории</span></span>
+            </button>
+            <button class="quiz-option" data-value="tech">
+              <span class="quiz-option-icon">💬</span>
+              <span class="quiz-option-text">Общаться с ChatGPT<span class="quiz-option-sub">Уже сидит в нейросетях</span></span>
+            </button>
+            <button class="quiz-option" data-value="experiments">
+              <span class="quiz-option-icon">🔬</span>
+              <span class="quiz-option-text">Экспериментировать<span class="quiz-option-sub">Разбирать как всё устроено</span></span>
+            </button>
+          </div>
+          <div class="quiz-controls">
+            <button class="quiz-back">← Назад</button>
+            <button class="btn btn-primary quiz-next" disabled>Дальше</button>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="quiz-step" data-step="3">
+          <h2 class="quiz-question">Какой у ребёнка опыт с компьютером?</h2>
+          <p class="quiz-hint">Это поможет преподавателю настроить занятие</p>
+          <div class="quiz-options" data-name="level">
+            <button class="quiz-option" data-value="none">
+              <span class="quiz-option-icon">🌱</span>
+              <span class="quiz-option-text">Никакого<span class="quiz-option-sub">Только смотрит ролики и играет</span></span>
+            </button>
+            <button class="quiz-option" data-value="basic">
+              <span class="quiz-option-icon">📚</span>
+              <span class="quiz-option-text">Базовый<span class="quiz-option-sub">Знает основы, иногда печатает</span></span>
+            </button>
+            <button class="quiz-option" data-value="advanced">
+              <span class="quiz-option-icon">⚡</span>
+              <span class="quiz-option-text">Уверенный<span class="quiz-option-sub">Уже что-то пробовал, есть опыт</span></span>
+            </button>
+          </div>
+          <div class="quiz-controls">
+            <button class="quiz-back">← Назад</button>
+            <button class="btn btn-primary quiz-next" disabled>Дальше</button>
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="quiz-step" data-step="4">
+          <h2 class="quiz-question">Какая у вас главная цель?</h2>
+          <p class="quiz-hint">От цели зависит, какую программу мы порекомендуем</p>
+          <div class="quiz-options" data-name="goal">
+            <button class="quiz-option" data-value="distract">
+              <span class="quiz-option-icon">📱</span>
+              <span class="quiz-option-text">Отвлечь от телефона<span class="quiz-option-sub">Направить экранное время в полезное</span></span>
+            </button>
+            <button class="quiz-option" data-value="profession">
+              <span class="quiz-option-icon">💼</span>
+              <span class="quiz-option-text">Подготовить к профессии будущего<span class="quiz-option-sub">AI-навыки на годы вперёд</span></span>
+            </button>
+            <button class="quiz-option" data-value="creativity">
+              <span class="quiz-option-icon">✨</span>
+              <span class="quiz-option-text">Развить творческое мышление<span class="quiz-option-sub">Чтобы сам создавал, а не потреблял</span></span>
+            </button>
+            <button class="quiz-option" data-value="confidence">
+              <span class="quiz-option-icon">🏆</span>
+              <span class="quiz-option-text">Дать уверенность в технологиях<span class="quiz-option-sub">Чтобы не отставал от сверстников</span></span>
+            </button>
+          </div>
+          <div class="quiz-controls">
+            <button class="quiz-back">← Назад</button>
+            <button class="btn btn-primary quiz-next" disabled>Дальше</button>
+          </div>
+        </div>
+
+        <!-- STEP 5 — CONTACT -->
+        <div class="quiz-step" data-step="5">
+          <h2 class="quiz-question">Готово! Куда отправить рекомендацию?</h2>
+          <p class="quiz-hint">Менеджер позвонит за 15 минут, расскажет про подобранный модуль и запишет на бесплатный пробный урок</p>
+          <div class="quiz-form">
+            <div class="quiz-form-group">
+              <label for="child-name">Имя ребёнка</label>
+              <input type="text" id="child-name" required placeholder="Например, Артём">
+            </div>
+            <div class="quiz-form-group">
+              <label for="parent-phone">Ваш телефон</label>
+              <input type="tel" id="parent-phone" required placeholder="+7 (___) ___-__-__">
+            </div>
+          </div>
+          <div class="quiz-controls">
+            <button class="quiz-back">← Назад</button>
+            <button class="btn btn-primary quiz-next" id="submit-btn" disabled>Получить рекомендацию</button>
+          </div>
+        </div>
+
+        <!-- RESULT -->
+        <div class="quiz-step" data-step="result">
+          <div class="quiz-result">
+            <div class="quiz-result-emoji" id="result-emoji">🎯</div>
+            <div class="quiz-result-title">Идеальный модуль для ребёнка</div>
+            <h2 id="result-headline">Это то, что нужно!</h2>
+            <div class="quiz-result-module">
+              <div class="quiz-result-module-age" id="result-age">12-14 лет</div>
+              <div class="quiz-result-module-name" id="result-module-name">AI Product Lab</div>
+              <div class="quiz-result-module-desc" id="result-module-desc">Описание модуля</div>
+            </div>
+            <p class="quiz-result-summary" id="result-summary">Текст саммари</p>
+            <a href="#" class="btn btn-primary btn-large quiz-result-cta">Записать на бесплатный пробный →</a>
+            <p class="quiz-result-micro">Мы перезвоним в течение 15 минут · или сразу позвоните: <a href="tel:+79274334966" style="color: var(--primary); font-weight: 700; white-space: nowrap;">+7 (927) 433-49-66</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why-section below reveal">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Почему мы спрашиваем</span>
+      <h2>Подбор по 4 параметрам</h2>
+      <p class="lede">У нас 50+ модулей — и не все подойдут вашему ребёнку. Чтобы он не заскучал и не «не понял», мы подбираем направление точно под возраст, интересы и цели.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🎯</div>
+        <h3>Точная рекомендация</h3>
+        <p>Не «попробуйте всё подряд», а конкретный модуль с обоснованием — почему именно он подойдёт вашему ребёнку.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <h3>Быстрый старт</h3>
+        <p>Менеджеру не нужно полчаса выяснять про ребёнка по телефону. Он сразу предлагает время и филиал.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💎</div>
+        <h3>Высокая удержание</h3>
+        <p>Дети, которые пришли на «свой» модуль с первого раза, в 2× чаще остаются учиться надолго.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="below reveal">
+  <div class="container">
+    <div class="section-head">
+      <h2>Что говорят родители, которые уже прошли тест</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="t-card">
+        <p class="t-text">«Я думала, ребёнку нужно "программирование" — после теста выбрали Vibe Coding с AI. Сын в восторге, никогда не угадала бы сама. Спасибо, что не дали записаться "наугад".»</p>
+        <div class="t-author">
+          <div class="t-avatar">А</div>
+          <div>
+            <div class="t-name">Анна, мама Артёма (10 лет)</div>
+            <div class="t-meta">Краснодар · 4 месяца в KIBERone</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-card">
+        <p class="t-text">«Дочка, оказывается, идеально подходит под промпт-инжиниринг — она и так часами в ChatGPT сидит. Записались, ходит уже полгода, теперь делает презентации лучше меня.»</p>
+        <div class="t-author">
+          <div class="t-avatar">М</div>
+          <div>
+            <div class="t-name">Марина, мама Софии (12 лет)</div>
+            <div class="t-meta">Казань · 6 месяцев в KIBERone</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust-section">
+  <div class="container">
+    <div class="trust-grid">
+      <div>
+        <div class="trust-stat">8</div>
+        <div class="trust-label">лет на рынке детского IT</div>
+      </div>
+      <div>
+        <div class="trust-stat">12k+</div>
+        <div class="trust-label">выпускников в сети KIBERone</div>
+      </div>
+      <div>
+        <div class="trust-stat">11</div>
+        <div class="trust-label">модулей про AI</div>
+      </div>
+      <div>
+        <div class="trust-stat">90%</div>
+        <div class="trust-label">учатся второй год</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-contact">
+        <a href="tel:+79274334966">+7 (927) 433-49-66</a>
+        <span>ежедневно 9:00–21:00</span>
+      </div>
+      <div class="footer-trust">
+        <div><span>✓</span> Лицензия на образовательную деятельность</div>
+        <div><span>✓</span> Договор и чек</div>
+        <div><span>✓</span> Преподаватели — IT-специалисты</div>
+      </div>
+      © 2026 KIBERone. Школа AI и цифровых навыков для детей.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ====== QUIZ STATE ======
+  const state = {
+    currentStep: 1,
+    totalSteps: 5,
+    answers: {
+      age: null,
+      interest: null,
+      level: null,
+      goal: null,
+      childName: '',
+      parentPhone: '',
+    },
+  };
+
+  // ====== MODULES DATABASE ======
+  const modules = {
+    miniAI: {
+      emoji: '🌟',
+      name: 'Mini-AI Playground',
+      age: '6-8 лет',
+      desc: 'Первое знакомство с искусственным интеллектом без кода. Ребёнок играет с нейросетями, генерирует картинки и истории, создаёт первые проекты в визуальной среде.',
+    },
+    scratchAI: {
+      emoji: '🎨',
+      name: 'Scratch + AI-помощники',
+      age: '7-10 лет',
+      desc: 'Визуальное программирование игр и анимаций с AI-подсказками. Ребёнок создаёт свои первые работающие проекты и видит результат сразу.',
+    },
+    vibeCoding: {
+      emoji: '🎮',
+      name: 'Vibe Coding & AI-инжиниринг',
+      age: '11-14 лет',
+      desc: 'Создание игр и сайтов в команде с AI-помощниками. Ребёнок учится не «писать код», а управлять AI, который пишет код. Это навык будущего.',
+    },
+    promptEng: {
+      emoji: '💬',
+      name: 'Промпт-инжиниринг',
+      age: '9-13 лет',
+      desc: 'Самая молодая профессия IT. Ребёнок учится разговаривать с нейросетями так, чтобы получать нужный результат с первой попытки.',
+    },
+    pythonAI: {
+      emoji: '🌐',
+      name: 'Python + AI: «Сайт с мозгами»',
+      age: '11-14 лет',
+      desc: 'Ребёнок создаёт настоящий сайт со встроенной нейросетью — она отвечает посетителям, рекомендует, обрабатывает запросы. Реальный рабочий продукт.',
+    },
+    aiProductLab: {
+      emoji: '🚀',
+      name: 'AI Product Lab',
+      age: '12-14 лет',
+      desc: 'Ребёнок собирает работающий MVP за 3 занятия — от идеи до запуска. Так это делают взрослые IT-команды. Готовый проект остаётся в портфолио для поступления в IT-вуз.',
+    },
+    nnVk: {
+      emoji: '🛒',
+      name: 'Нейросети + VK-магазин',
+      age: '12-14 лет',
+      desc: 'Ребёнок учится продавать с помощью AI: генерирует описания товаров, картинки, рекламу. Открывает свой первый VK-магазин и может монетизировать.',
+    },
+    cyberSec: {
+      emoji: '🛡️',
+      name: 'Этичный хакинг & AI-безопасность',
+      age: '11-14 лет',
+      desc: 'Кибербезопасность с применением AI. Ребёнок учится защищать данные, распознавать атаки и понимать, как устроена цифровая безопасность изнутри.',
+    },
+  };
+
+  // ====== RECOMMENDATION LOGIC ======
+  function recommendModule({ age, interest, level, goal }) {
+    // 6-8 лет
+    if (age === '6-8') {
+      if (interest === 'creative' || interest === 'experiments') return modules.miniAI;
+      return modules.miniAI;
+    }
+    // 9-11 лет
+    if (age === '9-11') {
+      if (interest === 'tech' || goal === 'profession') return modules.promptEng;
+      if (interest === 'creative') return modules.scratchAI;
+      if (interest === 'experiments') return modules.cyberSec;
+      if (interest === 'games') return modules.vibeCoding;
+      return modules.vibeCoding;
+    }
+    // 12-14 лет
+    if (age === '12-14') {
+      if (goal === 'profession' || goal === 'confidence') return modules.aiProductLab;
+      if (interest === 'tech') return modules.promptEng;
+      if (interest === 'creative') return modules.nnVk;
+      if (interest === 'experiments') return modules.pythonAI;
+      if (interest === 'games') return modules.vibeCoding;
+      return modules.aiProductLab;
+    }
+    return modules.vibeCoding;
+  }
+
+  function summaryText({ age, interest, level, goal }, module) {
+    let parts = [];
+    if (goal === 'distract') parts.push('направит экранное время в полезное русло');
+    if (goal === 'profession') parts.push('даст навык, востребованный в любой профессии');
+    if (goal === 'creativity') parts.push('разовьёт способность создавать, а не только потреблять');
+    if (goal === 'confidence') parts.push('даст уверенность в технологиях наравне со сверстниками');
+    if (level === 'none') parts.push('подходит для начинающих — опыт не нужен');
+    if (level === 'advanced') parts.push('даст ребёнку реальный профессиональный уровень');
+    const tail = parts.length ? ' — ' + parts.join(', ') : '';
+    return `Этот модуль идеально подходит для ребёнка ${age} лет с интересом к ${
+      { games: 'играм', creative: 'творчеству', tech: 'нейросетям', experiments: 'экспериментам' }[interest] || 'технологиям'
+    }${tail}.`;
+  }
+
+  // ====== UI HANDLERS ======
+  const stepEls = document.querySelectorAll('.quiz-step');
+  const progressFill = document.getElementById('progress-fill');
+  const progressText = document.getElementById('progress-text');
+
+  function showStep(stepNum) {
+    stepEls.forEach(el => el.classList.remove('active'));
+    const target = document.querySelector(`.quiz-step[data-step="${stepNum}"]`);
+    if (target) target.classList.add('active');
+
+    if (stepNum === 'result') {
+      progressFill.style.width = '100%';
+      progressText.textContent = 'Готово!';
+    } else {
+      const pct = (stepNum / state.totalSteps) * 100;
+      progressFill.style.width = pct + '%';
+      progressText.textContent = `Вопрос ${stepNum} из ${state.totalSteps}`;
+    }
+
+    // scroll quiz into view
+    document.getElementById('quiz').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Option selection
+  document.querySelectorAll('.quiz-options').forEach(group => {
+    const name = group.dataset.name;
+    group.querySelectorAll('.quiz-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        group.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        state.answers[name] = btn.dataset.value;
+        // enable next button on this step
+        const stepEl = btn.closest('.quiz-step');
+        const nextBtn = stepEl.querySelector('.quiz-next');
+        nextBtn.disabled = false;
+      });
+    });
+  });
+
+  // Next buttons (except submit)
+  document.querySelectorAll('.quiz-step').forEach(stepEl => {
+    const stepNum = stepEl.dataset.step;
+    if (stepNum === 'result') return;
+    const nextBtn = stepEl.querySelector('.quiz-next');
+    if (!nextBtn) return;
+
+    if (stepNum === '5') {
+      // submit step
+      const childName = document.getElementById('child-name');
+      const parentPhone = document.getElementById('parent-phone');
+
+      function checkContactValid() {
+        const valid = childName.value.trim().length >= 2 && parentPhone.value.replace(/\D/g, '').length >= 11;
+        nextBtn.disabled = !valid;
+      }
+      childName.addEventListener('input', checkContactValid);
+      parentPhone.addEventListener('input', () => {
+        // formatting
+        let v = parentPhone.value.replace(/\D/g, '');
+        if (v.startsWith('8')) v = '7' + v.slice(1);
+        if (!v.startsWith('7')) v = '7' + v;
+        let f = '+7';
+        if (v.length > 1) f += ' (' + v.slice(1, 4);
+        if (v.length >= 5) f += ') ' + v.slice(4, 7);
+        if (v.length >= 8) f += '-' + v.slice(7, 9);
+        if (v.length >= 10) f += '-' + v.slice(9, 11);
+        parentPhone.value = f;
+        checkContactValid();
+      });
+
+      nextBtn.addEventListener('click', () => {
+        state.answers.childName = childName.value.trim();
+        state.answers.parentPhone = parentPhone.value;
+
+        // TODO: Отправить в CRM (s20.online) с меткой variant: 'C'
+        // fetch('/api/lead', { method: 'POST', body: JSON.stringify({ ...state.answers, variant: 'C', recommendedModule: recommendedModule.name }) })
+
+        const recommended = recommendModule(state.answers);
+        document.getElementById('result-emoji').textContent = recommended.emoji;
+        document.getElementById('result-age').textContent = recommended.age;
+        document.getElementById('result-module-name').textContent = recommended.name;
+        document.getElementById('result-module-desc').textContent = recommended.desc;
+        document.getElementById('result-summary').textContent = summaryText(state.answers, recommended);
+        document.getElementById('result-headline').textContent = `${state.answers.childName}, твой модуль найден!`;
+
+        showStep('result');
+      });
+    } else {
+      nextBtn.addEventListener('click', () => {
+        const next = parseInt(stepNum) + 1;
+        showStep(next);
+      });
+    }
+  });
+
+  // Back buttons
+  document.querySelectorAll('.quiz-back').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const stepEl = btn.closest('.quiz-step');
+      const stepNum = stepEl.dataset.step;
+      if (stepNum === 'result') {
+        showStep(5);
+      } else {
+        const prev = parseInt(stepNum) - 1;
+        if (prev >= 1) showStep(prev);
+      }
+    });
+  });
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('shown');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
