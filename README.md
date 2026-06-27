@@ -24,3 +24,5 @@ python -m http.server 8080
 ## Деплой
 
 Автодеплой из этого репозитория через Cloudflare Pages. Push в `main` → CF Pages пересобирает за 30-60 сек.
+
+CI подключён 2026-06-27.
