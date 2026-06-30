@@ -98,11 +98,11 @@
     }
     .logo {
       display: block;
-      height: 38px;
+      height: 56px;
       width: auto;
     }
     @media (max-width: 559px) {
-      .logo { height: 30px; }
+      .logo { height: 44px; }
     }
     .header-nav {
       display: none;
@@ -988,103 +988,6 @@
       color: var(--gray-500);
     }
 
-    /* PRICING */
-    .pricing-section {
-      background: var(--bg);
-    }
-    .pricing-grid {
-      display: grid;
-      gap: 24px;
-      margin-top: 40px;
-    }
-    @media (min-width: 700px) {
-      .pricing-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .price-card {
-      background: white;
-      border: 2px solid var(--gray-100);
-      border-radius: var(--radius-lg);
-      padding: 32px 28px;
-      text-align: center;
-      position: relative;
-    }
-    .price-card.popular {
-      border-color: var(--primary);
-      box-shadow: var(--shadow-md);
-      transform: scale(1.02);
-    }
-    .price-card .badge {
-      position: absolute;
-      top: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--accent);
-      color: var(--dark);
-      font-size: 12px;
-      font-weight: 800;
-      padding: 6px 16px;
-      border-radius: 100px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    .price-card h3 {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--gray-700);
-      margin-bottom: 16px;
-    }
-    .price-amount {
-      font-size: 40px;
-      font-weight: 900;
-      color: var(--dark);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .price-amount .currency {
-      font-size: 24px;
-      vertical-align: top;
-      margin-left: 4px;
-      font-weight: 700;
-    }
-    .price-period {
-      font-size: 14px;
-      color: var(--gray-500);
-      margin-bottom: 24px;
-    }
-    .price-features {
-      list-style: none;
-      text-align: left;
-      margin-bottom: 0;
-    }
-    .price-features li {
-      padding: 10px 0 10px 28px;
-      position: relative;
-      font-size: 14px;
-      color: var(--gray-700);
-      border-bottom: 1px solid var(--gray-100);
-    }
-    .price-features li:last-child { border-bottom: none; }
-    .price-features li::before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      color: var(--success);
-      font-weight: 800;
-    }
-    .pricing-installment {
-      margin-top: 32px;
-      background: var(--dark);
-      color: white;
-      padding: 24px 32px;
-      border-radius: var(--radius-lg);
-      text-align: center;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-    .pricing-installment strong {
-      color: var(--accent);
-    }
-
     /* FAQ */
     .faq-list {
       max-width: 800px;
@@ -1345,6 +1248,243 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* HERO BANNER (полотно над hero) */
+    .hero-banner {
+      padding: 20px 0 0;
+      background: var(--bg);
+    }
+    .hero-banner-inner {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      box-shadow: var(--shadow-md);
+    }
+    @media (min-width: 700px) {
+      .hero-banner-inner { aspect-ratio: 20 / 9; }
+    }
+    @media (min-width: 1000px) {
+      .hero-banner-inner { aspect-ratio: 24 / 9; }
+    }
+    .hero-banner-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-banner-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0, 82, 204, 0.55) 0%, rgba(0, 82, 204, 0.15) 45%, rgba(0, 0, 0, 0) 100%);
+    }
+    .hero-banner-content {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    @media (min-width: 700px) {
+      .hero-banner-content { left: 32px; right: 32px; bottom: 32px; }
+    }
+    .hero-banner-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark);
+      box-shadow: var(--shadow-sm);
+    }
+    .hero-banner-tag .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.25);
+      animation: dotPulse 1.6s ease-in-out infinite;
+    }
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.25); }
+      50% { opacity: 0.85; box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.05); }
+    }
+    .hero-banner-meta {
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      opacity: 0.95;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+    @media (min-width: 700px) {
+      .hero-banner-tag { font-size: 14px; padding: 12px 22px; }
+      .hero-banner-meta { font-size: 14px; }
+    }
+
+    /* HERO SOCIAL ROW (под CTA) */
+    .hero-social {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 20px;
+      padding: 12px 16px;
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: 100px;
+      box-shadow: var(--shadow-sm);
+      width: fit-content;
+      max-width: 100%;
+    }
+    .hero-social-avatars {
+      display: flex;
+    }
+    .hero-social-avatars img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--white);
+      margin-left: -10px;
+    }
+    .hero-social-avatars img:first-child { margin-left: 0; }
+    .hero-social-text {
+      font-size: 13px;
+      line-height: 1.35;
+      color: var(--gray-700);
+    }
+    .hero-social-text strong { color: var(--dark); }
+    @media (max-width: 480px) {
+      .hero-social { gap: 10px; padding: 10px 14px; }
+      .hero-social-avatars img { width: 30px; height: 30px; }
+      .hero-social-text { font-size: 12px; }
+    }
+
+    /* LESSONS GALLERY */
+    .gallery-section {
+      background: var(--bg);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 600px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    }
+    @media (min-width: 900px) {
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .gallery-item-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 28px 16px 14px;
+      background: linear-gradient(180deg, transparent 0%, rgba(15, 20, 25, 0.85) 100%);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .gallery-item-caption span {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    /* FORMAT WITH IMAGE */
+    .format-layout {
+      display: grid;
+      gap: 32px;
+      align-items: center;
+    }
+    @media (min-width: 900px) {
+      .format-layout { grid-template-columns: 1fr 1.1fr; gap: 56px; }
+    }
+    .format-image {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      box-shadow: var(--shadow-lg);
+    }
+    .format-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .format-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, transparent 50%, rgba(0, 82, 204, 0.15) 100%);
+    }
+    .format-badge {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: var(--white);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark);
+      box-shadow: var(--shadow-md);
+    }
+    .format-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.18);
+    }
+
+    /* AUDIENCE IMAGE */
+    .audience-card.yes {
+      position: relative;
+      overflow: hidden;
+    }
+    .audience-card-photo {
+      margin-top: 20px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+    }
+    .audience-card-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
   </style>
 </head>
 <body>
@@ -1356,7 +1496,6 @@
       <nav class="header-nav">
         <a href="#promise">О школе</a>
         <a href="#modules">Модули</a>
-        <a href="#pricing">Цены</a>
         <a href="#faq">Вопросы</a>
       </nav>
       <div class="header-actions">
@@ -1367,6 +1506,19 @@
   </div>
 </header>
 
+<div class="hero-banner">
+  <div class="container">
+    <div class="hero-banner-inner">
+      <img src="images/hero-banner.jpg" alt="Дети учатся создавать AI-проекты в KIBERone" loading="eager">
+      <div class="hero-banner-overlay"></div>
+      <div class="hero-banner-content">
+        <div class="hero-banner-tag"><span class="dot"></span> Идут занятия в 7 городах России</div>
+        <div class="hero-banner-meta">Дети 6-16 лет · 1.5 ч/нед · оффлайн</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section class="hero">
   <div class="container">
     <div class="hero-grid">
@@ -1376,6 +1528,16 @@
         <p class="hero-subtitle">Главный навык будущего — не «писать код», а ставить задачи AI и собирать с ним продукты. Учим детей с 6 лет на реальных играх, сайтах и нейросетях, которые ребёнок делает сам.</p>
         <a href="#trial" class="btn btn-primary btn-large">Записать на бесплатный пробный →</a>
         <p class="hero-phone-line">или позвоните: <a href="tel:+79274334966" class="micro-phone">+7 (927) 433-49-66</a></p>
+        <div class="hero-social">
+          <div class="hero-social-avatars">
+            <img src="images/hero-avatar-1.jpg" alt="" loading="lazy">
+            <img src="images/hero-avatar-2.jpg" alt="" loading="lazy">
+            <img src="images/hero-avatar-3.jpg" alt="" loading="lazy">
+          </div>
+          <div class="hero-social-text">
+            <strong>12 000+ детей</strong> уже создают<br>проекты с AI в сети KIBERone
+          </div>
+        </div>
       </div>
       <div class="hero-mockup">
         <div class="mockup-browser-bar">
@@ -1543,6 +1705,42 @@
   </div>
 </section>
 
+<section class="gallery-section reveal">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-pretitle">Как это выглядит</span>
+      <h2>Атмосфера в наших классах</h2>
+      <p class="section-subtitle">Маленькие группы, современная техника, фокус на своём продукте, а не на лекции. Ребёнок приходит создавать — и идёт домой с результатом.</p>
+    </div>
+    <div class="gallery-grid">
+      <figure class="gallery-item">
+        <img src="images/lesson-3.jpg" alt="Ребёнок работает за ноутбуком" loading="lazy">
+        <figcaption class="gallery-item-caption">Каждый — за своим компьютером<span>Всё оборудование наше</span></figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/lesson-2.jpg" alt="Дети учатся программировать в группе" loading="lazy">
+        <figcaption class="gallery-item-caption">Маленькие группы 6-8 человек<span>Преподаватель доходит до каждого</span></figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/lesson-5.jpg" alt="Ребёнок и наставник за компьютером" loading="lazy">
+        <figcaption class="gallery-item-caption">Преподаватель рядом<span>Помогает, не решает за ребёнка</span></figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/lesson-4.jpg" alt="Дети создают AI-проект" loading="lazy">
+        <figcaption class="gallery-item-caption">Создание реальных проектов<span>Игры, сайты, AI-боты</span></figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/lesson-1.jpg" alt="Группа на занятии по робототехнике и AI" loading="lazy">
+        <figcaption class="gallery-item-caption">Командная работа<span>Как в настоящих IT-командах</span></figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/lesson-6.jpg" alt="Ребёнок презентует работу" loading="lazy">
+        <figcaption class="gallery-item-caption">Презентация результата<span>Защита перед группой и родителями</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <section class="audience-section reveal">
   <div class="container">
     <div class="section-header">
@@ -1559,6 +1757,9 @@
           <li>Вы видите, как AI меняет рынок труда, и хотите, чтобы ребёнок был готов</li>
           <li>Вы хотите, чтобы у ребёнка были среда, дисциплина и реальный результат</li>
         </ul>
+        <div class="audience-card-photo">
+          <img src="images/audience-photo.jpg" alt="Ребёнок увлечённо работает за компьютером" loading="lazy">
+        </div>
       </div>
       <div class="audience-card no">
         <h3>Лучше выбрать другое</h3>
@@ -1616,26 +1817,32 @@
     <div class="section-header">
       <h2>Формат, который выдерживают даже занятые школьники</h2>
     </div>
-    <div class="format-grid">
-      <div class="format-card">
-        <div class="format-icon">🕐</div>
-        <h3>1.5 часа раз в неделю</h3>
-        <p>Меньше, чем средний школьник тратит на TikTok за вечер. Не перегружаем расписание ребёнка.</p>
+    <div class="format-layout">
+      <div class="format-image">
+        <img src="images/classroom.jpg" alt="Современный класс с компьютерами для занятий" loading="lazy">
+        <div class="format-badge"><span class="dot"></span> Оффлайн, 7 городов</div>
       </div>
-      <div class="format-card">
-        <div class="format-icon">👥</div>
-        <h3>Группы по 6-8 человек</h3>
-        <p>Преподаватель уделяет внимание каждому. Дети учатся в команде сверстников.</p>
-      </div>
-      <div class="format-card">
-        <div class="format-icon">💻</div>
-        <h3>Оффлайн в вашем городе</h3>
-        <p>Все материалы и компьютеры — наши. С собой ребёнку ничего не нужно.</p>
-      </div>
-      <div class="format-card">
-        <div class="format-icon">🎯</div>
-        <h3>Каждое занятие — продукт</h3>
-        <p>Ребёнок не «учит теорию» — он создаёт что-то конкретное и забирает домой.</p>
+      <div class="format-grid" style="margin-top:0; grid-template-columns: repeat(2, 1fr);">
+        <div class="format-card">
+          <div class="format-icon">🕐</div>
+          <h3>1.5 часа раз в неделю</h3>
+          <p>Меньше, чем средний школьник тратит на TikTok за вечер. Не перегружаем расписание ребёнка.</p>
+        </div>
+        <div class="format-card">
+          <div class="format-icon">👥</div>
+          <h3>Группы по 6-8 человек</h3>
+          <p>Преподаватель уделяет внимание каждому. Дети учатся в команде сверстников.</p>
+        </div>
+        <div class="format-card">
+          <div class="format-icon">💻</div>
+          <h3>Оффлайн в вашем городе</h3>
+          <p>Все материалы и компьютеры — наши. С собой ребёнку ничего не нужно.</p>
+        </div>
+        <div class="format-card">
+          <div class="format-icon">🎯</div>
+          <h3>Каждое занятие — продукт</h3>
+          <p>Ребёнок не «учит теорию» — он создаёт что-то конкретное и забирает домой.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1704,54 +1911,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="pricing-section reveal" id="pricing">
-  <div class="container">
-    <div class="section-header">
-      <h2>Стоимость обучения</h2>
-      <p class="section-subtitle">Меньше, чем стоит репетитор по математике. Навык — несравнимо более перспективный.</p>
-    </div>
-    <div class="pricing-grid">
-      <div class="price-card">
-        <h3>Помесячно</h3>
-        <div class="price-amount">6 000<span class="currency">₽</span></div>
-        <div class="price-period">в месяц</div>
-        <ul class="price-features">
-          <li>4 занятия в месяц</li>
-          <li>Любой из 50+ модулей на выбор</li>
-          <li>Группа 6-8 человек</li>
-          <li>Отказ в любой момент</li>
-        </ul>
-      </div>
-      <div class="price-card popular">
-        <span class="badge">Популярный выбор</span>
-        <h3>Полугодие</h3>
-        <div class="price-amount">30 600<span class="currency">₽</span></div>
-        <div class="price-period">за 6 месяцев · экономия 5 400 ₽</div>
-        <ul class="price-features">
-          <li>24 занятия (4 в месяц)</li>
-          <li>Скидка 15% к месячной цене</li>
-          <li>Фиксация цены на полугодие</li>
-          <li>Гарантия результата на первый месяц</li>
-        </ul>
-      </div>
-      <div class="price-card">
-        <h3>Год</h3>
-        <div class="price-amount">54 000<span class="currency">₽</span></div>
-        <div class="price-period">за 12 месяцев · экономия 18 000 ₽</div>
-        <ul class="price-features">
-          <li>48 занятий (4 в месяц)</li>
-          <li>Скидка 25% к месячной цене</li>
-          <li>Бонус-модуль в подарок</li>
-          <li>Сертификат на 4 занятия другу</li>
-        </ul>
-      </div>
-    </div>
-    <div class="pricing-installment">
-      🎁 <strong>Рассрочка 0% на 6 и 12 месяцев</strong> — без переплат, без скрытых комиссий. Оформляется онлайн за 5 минут.
     </div>
   </div>
 </section>
